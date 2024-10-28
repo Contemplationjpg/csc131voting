@@ -12,7 +12,7 @@ app.use(express.json()); // for parsing application/json
 
 app.use(allowCrossDomain);
 
-app.post("/msg", (req, res, next) => {
+app.post("/create_account", (req, res, next) => {
  const message = req.body.message;
  res.json({
     "username": req.body.username,
