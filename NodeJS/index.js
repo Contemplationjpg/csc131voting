@@ -14,6 +14,8 @@ app.use(allowCrossDomain);
 
 app.post("/create_account", (req, res, next) => {
  const message = req.body.message;
+ console.log(req.body.username);
+ console.log(req.body.password);
  res.json({
     "username": req.body.username,
     "password": req.body.password,
