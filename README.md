@@ -1,13 +1,17 @@
 # csc131voting
-## To initialize NodeJS
-Inside NodeJS folder:
 
+## Client
+Open `index.html` file in a web browser
+
+## Server
+
+**Run Commands Inside NodeJS folder**
+
+### When running NodeJS server for the first time
 run `npm install`
 
-## To run server
-Inside NodeJS folder:
+### To run server
 
 run `node index.js`
 
-## Client
-Open `index.html` in a web browser
+
