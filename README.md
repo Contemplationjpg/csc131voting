@@ -1,5 +1,5 @@
 # csc131voting
-i recommend reading the readme.md file on a file editor, it makes it easier to understand
+I recommend reading the readme.md file on a file editor, it makes it easier to understand
 ## To initialize NodeJS
 Inside NodeJS folder:
 run the following:

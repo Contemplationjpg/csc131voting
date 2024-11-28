@@ -72,12 +72,25 @@
             <input type="checkbox" class="form-check-input" id="terms" required>
             <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        <button type="submit" class="btn btn-primary w-100" onclick="createAccount()">Sign Up</button>
     </form>
     <p class="mt-3 text-center">Already have an account? <a href="login.html">Log in</a></p>
 </div>
 
-
+<script>
+   function createAccount(){
+      var xhr = new XMLHttpRequest();
+      if(document.getElementById("password").value==document.getElementById("confirm-password")){
+         xhr.open("POST", "http://localhost:3000/create_account", true);
+         xhr.setRequestHeader('Content-Type', 'application/json');
+         xhr.send(JSON.stringify({
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+         }));
+      }
+   };
+</script>
 
  <hr class="my-4">
 
