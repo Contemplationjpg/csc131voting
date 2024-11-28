@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <button onclick="fetchAdminData()">View Admin Data</button>
+    <div id="adminContent"></div>
+
+    <script>
+    function fetchAdminData() {
+    const token = localStorage.getItem("jwtToken"); // Ensure this matches the exact key name used
+
+    if (!token) {
+        alert("No token found. Please log in.");
+        return;
+    }
+
+    fetch("http://localhost:3000/admin", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Admin access required');
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById("adminContent").innerText = JSON.stringify(data);
+    })
+    .catch(error => {
+        alert("Access denied: " + error.message);
+    });
+}
+
+    </script>
+</body>
+</html>
