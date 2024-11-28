@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors({
     origin: (origin, callback) => {
         // Allow requests from both 'http://localhost' and 'http://127.0.0.1:5500'
-        if (origin === 'http://localhost' || origin === 'http://127.0.0.1:5500' || !origin) {
+        if (origin === 'http://localhost' || origin === 'http://127.0.0.1:5500' || !origin || origin==='null') {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
