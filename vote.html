@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote on Polls</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let isAdmin = false; // Variable to store whether the user is an admin
+
+        function fetchPolls() {
+            fetch('http://localhost:3000/polls', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                }
+            })
+            .then(response => response.json())
+            .then(polls => {
+                const container = document.getElementById('pollsContainer');
+                container.innerHTML = '';
+
+                // Fetch user role to check if they are an admin
+                fetch('http://localhost:3000/user', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                    }
+                })
+                .then(response => response.json())
+                .then(user => {
+                    isAdmin = user.is_admin === 1;
+
+                    polls.forEach(poll => {
+                        const pollDiv = document.createElement('div');
+                        const deadline = new Date(poll.deadline);
+                        const now = new Date();
+
+                        const timeLeft = deadline - now;
+                        const isClosed = timeLeft <= 0;
+
+                        pollDiv.innerHTML = `
+                            <h3>${poll.title}</h3>
+                            <p>${poll.description}</p>
+                            <p>Deadline: ${deadline.toLocaleString()}</p>
+                            <p>${isClosed ? 'Voting has ended' : `Time left: ${formatTimeLeft(timeLeft)}`}</p>
+                        `;
+
+                        if (!isClosed) {
+                            poll.options.forEach(option => {
+                                pollDiv.innerHTML += `
+                                    <label>
+                                        <input type="radio" name="poll${poll.poll_id}" value="${option.option_id}">
+                                        ${option.option_text} (${option.votes} votes)
+                                    </label><br>
+                                `;
+                            });
+
+                            pollDiv.innerHTML += `<button onclick="handleVote(${poll.poll_id})">Vote</button>`;
+                        }
+
+                        pollDiv.innerHTML += `<button onclick="displayPollResultsChart(${poll.poll_id})">View Results</button>`;
+                        container.appendChild(pollDiv);
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching polls:', error));
+        }
+
+        function handleVote(pollId) {
+            if (isAdmin) {
+                alert('Admins are not allowed to vote.');
+                return;
+            }
+
+            const selectedOption = document.querySelector(`input[name="poll${pollId}"]:checked`);
+            if (!selectedOption) {
+                alert('Please select an option before voting.');
+                return;
+            }
+
+            const optionId = selectedOption.value;
+
+            fetch('http://localhost:3000/polls/vote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                },
+                body: JSON.stringify({ poll_id: pollId, option_id: optionId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || 'Vote recorded successfully');
+                fetchPolls(); // Refresh polls after voting
+            })
+            .catch(error => console.error('Error submitting vote:', error));
+        }
+
+        function displayPollResultsChart(pollId) {
+            fetch(`http://localhost:3000/polls/results/${pollId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                }
+            })
+            .then(response => response.json())
+            .then(results => {
+                const labels = results.map(result => result.option_text);
+                const data = results.map(result => result.votes);
+
+                const chartCanvas = document.getElementById('pollResultsChart');
+                chartCanvas.style.display = 'block'; // Make the chart visible
+
+                // Clear any previous chart instance if it exists
+                if (window.currentChart) {
+                    window.currentChart.destroy();
+                }
+
+                const ctx = chartCanvas.getContext('2d');
+                window.currentChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Votes',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching poll results:', error));
+        }
+
+        function formatTimeLeft(ms) {
+            const seconds = Math.floor((ms / 1000) % 60);
+            const minutes = Math.floor((ms / (1000 * 60)) % 60);
+            const hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+            return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        window.onload = fetchPolls;
+    </script>
+</head>
+<body>
+    <h1>Vote on Active Polls</h1>
+    <div id="pollsContainer"></div>
+    <canvas id="pollResultsChart" width="400" height="200" style="display:none;"></canvas>
+</body>
+</html>
