@@ -30,7 +30,7 @@ app.post("/create_account", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         
         db.query(
-            'INSERT INTO Users (username, password_hash) VALUES (?, ?)',
+            'INSERT INTO users (username, password_hash) VALUES (?, ?)',
             [username, hashedPassword],
             (err, results) => {
                 if (err) {
@@ -48,7 +48,7 @@ app.post("/create_account", async (req, res) => {
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
-    db.query('SELECT * FROM Users WHERE username = ?', [username], async (err, results) => {
+    db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
         if (err || results.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
 
         const user = results[0];
@@ -71,7 +71,7 @@ app.get('/polls', authenticate, (req, res) => {
     const query = `
         SELECT p.poll_id, p.title, p.description, p.deadline, po.option_id, po.option_text, po.votes
         FROM Polls p
-        LEFT JOIN PollOptions po ON p.poll_id = po.poll_id
+        LEFT JOIN polloptions po ON p.poll_id = po.poll_id
         ORDER BY p.created_at DESC;
     `;
 
@@ -109,7 +109,7 @@ app.post('/polls/vote', authenticate, (req, res) => {
     }
 
     // Check if the poll is still open
-    db.query('SELECT deadline FROM Polls WHERE poll_id = ?', [poll_id], (err, results) => {
+    db.query('SELECT deadline FROM polls WHERE poll_id = ?', [poll_id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error checking deadline' });
 
         const deadline = new Date(results[0].deadline);
@@ -120,20 +120,20 @@ app.post('/polls/vote', authenticate, (req, res) => {
         }
 
         // Check if the user has already voted
-        db.query('SELECT * FROM Votes WHERE user_id = ? AND poll_id = ?', [user_id, poll_id], (err, results) => {
+        db.query('SELECT * FROM votes WHERE user_id = ? AND poll_id = ?', [user_id, poll_id], (err, results) => {
             if (err) return res.status(500).json({ error: 'Database error checking votes' });
 
             if (results.length > 0) {
                 // User already voted, update the vote
                 const previousOptionId = results[0].option_id;
 
-                db.query('UPDATE Votes SET option_id = ? WHERE user_id = ? AND poll_id = ?', [option_id, user_id, poll_id], (err) => {
+                db.query('UPDATE votes SET option_id = ? WHERE user_id = ? AND poll_id = ?', [option_id, user_id, poll_id], (err) => {
                     if (err) return res.status(500).json({ error: 'Database error updating vote' });
 
-                    db.query('UPDATE PollOptions SET votes = votes - 1 WHERE option_id = ?', [previousOptionId], (err) => {
+                    db.query('UPDATE polloptions SET votes = votes - 1 WHERE option_id = ?', [previousOptionId], (err) => {
                         if (err) return res.status(500).json({ error: 'Database error updating previous option' });
 
-                        db.query('UPDATE PollOptions SET votes = votes + 1 WHERE option_id = ?', [option_id], (err) => {
+                        db.query('UPDATE polloptions SET votes = votes + 1 WHERE option_id = ?', [option_id], (err) => {
                             if (err) return res.status(500).json({ error: 'Database error updating new option' });
                             res.json({ message: 'Your vote has been updated' });
                         });
@@ -141,10 +141,10 @@ app.post('/polls/vote', authenticate, (req, res) => {
                 });
             } else {
                 // User has not voted yet, insert the vote
-                db.query('INSERT INTO Votes (user_id, poll_id, option_id) VALUES (?, ?, ?)', [user_id, poll_id, option_id], (err) => {
+                db.query('INSERT INTO votes (user_id, poll_id, option_id) VALUES (?, ?, ?)', [user_id, poll_id, option_id], (err) => {
                     if (err) return res.status(500).json({ error: 'Database error recording vote' });
 
-                    db.query('UPDATE PollOptions SET votes = votes + 1 WHERE option_id = ?', [option_id], (err) => {
+                    db.query('UPDATE polloptions SET votes = votes + 1 WHERE option_id = ?', [option_id], (err) => {
                         if (err) return res.status(500).json({ error: 'Database error updating vote count' });
                         res.json({ message: 'Your vote has been recorded' });
                     });
@@ -160,7 +160,7 @@ app.get('/polls/vote_status', authenticate, (req, res) => {
     const { poll_id } = req.query;
     const user_id = req.user.userId;
 
-    db.query('SELECT * FROM Votes WHERE user_id = ? AND poll_id = ?', [user_id, poll_id], (err, results) => {
+    db.query('SELECT * FROM votes WHERE user_id = ? AND poll_id = ?', [user_id, poll_id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error fetching vote status' });
 
         if (results.length > 0) {
@@ -178,7 +178,7 @@ app.get('/polls/results/:poll_id', authenticate, (req, res) => {
     db.query(
         `
         SELECT po.option_text, po.votes
-        FROM PollOptions po
+        FROM polloptions po
         WHERE po.poll_id = ?
         `,
         [poll_id],
@@ -193,7 +193,7 @@ app.get('/polls/results/:poll_id', authenticate, (req, res) => {
 
 
 app.get('/user', authenticate, (req, res) => {
-    db.query('SELECT username, is_admin FROM Users WHERE user_id = ?', [req.user.userId], (err, results) => {
+    db.query('SELECT username, is_admin FROM users WHERE user_id = ?', [req.user.userId], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error fetching user details' });
         if (results.length === 0) return res.status(404).json({ error: 'User not found' });
 
@@ -220,7 +220,7 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
 
     // Insert the new poll into the database
     db.query(
-        'INSERT INTO Polls (title, description, poll_type, deadline, created_by) VALUES (?, ?, ?, ?, ?)',
+        'INSERT INTO polls (title, description, poll_type, deadline, created_by) VALUES (?, ?, ?, ?, ?)',
         [title, description, poll_type, deadline, req.user.userId],
         (err, result) => {
             if (err) return res.status(500).json({ error: 'Database error while creating poll' });
@@ -233,7 +233,7 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
                 const optionQueries = options.map(option => {
                     return new Promise((resolve, reject) => {
                         db.query(
-                            'INSERT INTO PollOptions (poll_id, option_text) VALUES (?, ?)',
+                            'INSERT INTO polloptions (poll_id, option_text) VALUES (?, ?)',
                             [pollId, option],
                             (err) => {
                                 if (err) reject(err);
