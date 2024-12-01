@@ -1,4 +1,6 @@
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./db');
@@ -10,10 +12,15 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 
+const httpsServer = https.createServer({
+        key: fs.readFileSync(__dirname + '/privkey.pem'),
+        cert: fs.readFileSync(__dirname + '/cert.pem')
+}, app);
+
 app.use(cors({
     origin: (origin, callback) => {
         // Allow requests from both 'http://localhost' and 'http://127.0.0.1:5500'
-        if (origin === 'http://localhost' || origin === 'http://127.0.0.1:5500' || !origin || origin==='null') {
+        if (origin === 'http://localhost' || origin === 'http://127.0.0.1:5500' || !origin || origin==='null' || origin==='https://csc131voting.vercel.app') {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
@@ -35,7 +42,7 @@ app.post("/create_account", async (req, res) => {
             (err, results) => {
                 if (err) {
                     console.error('Database error:', err); // Log the exact database error
-                    return res.status(500).json({ error: 'Database error' });
+                    return res.status(500).json({ error: 'Database errors', err});
                 }
                 res.status(201).json({ message: 'User created successfully' });
             }
@@ -259,6 +266,6 @@ app.get('/protected', authenticate, (req, res) => {
     res.json({ message: 'This is a protected route', user: req.user });
 });
 
-app.listen(3000, () => {
+httpsServer.listen(3000, () => {
     console.log("Server running on port 3000");
 });
