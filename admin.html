@@ -16,7 +16,7 @@
                 return;
             }
 
-            fetch('http://localhost:3000/user', {
+            fetch('http://csc131voting.ddns.net:3000/user', {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` }
             })
@@ -60,7 +60,7 @@
                 return;
             }
 
-            fetch('http://localhost:3000/admin/create_poll', {
+            fetch('http://csc131voting.ddns.net:3000/admin/create_poll', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
