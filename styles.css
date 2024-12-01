@@ -10,20 +10,34 @@ html,body{
 
 .navbar {
     padding: 0.8rem;
+
 }
 
-.navbar-nav li{
-    padding-right: 20px;
-}
 
 .nav-link {
     font-size: 1.1em !important;
 }
+
+.navbar-brand {
+    display: flex; 
+    align-items: center; 
+}
+
+
 .brand-image{
     width: 100px; 
     height: auto;
     margin-left: 40px;
 }
+
+.brand-text {
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    color: #333; 
+    margin-left: auto; 
+    padding-left: 40px;
+}
+
 
 .home-inner{
     display: flex;               
@@ -93,6 +107,18 @@ html,body{
     margin-bottom: 1rem;
 }
 
+p {
+    line-height: 2; 
+    font-size: 1rem; 
+  }
+
+
+.col-lg-6 img {
+    width: 100%; /* Make sure the image takes up the full width of the column */
+    height: 100%; /* Ensure the image fills the height of the column */
+    object-fit: cover; /* Ensure the image covers the entire space without distortion */
+ }
+
 .fa-code{
     color: #e54d26;
 }
@@ -130,7 +156,7 @@ html,body{
     color: #00aced;
 }
 
-.fa-google-plus-g {
+.fa-linkedin {
     color: #dd4b39 ;
 }
 
@@ -139,10 +165,11 @@ html,body{
 }
 
 .fa-youtube{
-    color: #bb0000;
+    color: #bb0000 !important;
+
 }
 
-.fa-facebook:hover, .fa-twitter:hover, .fa-google-plus-g:hover, .fa-instagram:hover, .fa-youtube {
+.fa-facebook:hover, .fa-twitter:hover, .fa-linked:hover, .fa-instagram:hover, .fa-youtube {
     color: #d5d5d5;
 }
 
@@ -153,7 +180,7 @@ footer {
 }
 
 .footer-img{
-    width: 100px; 
+    width: 200px; 
     height: auto;
 
 }
@@ -180,13 +207,124 @@ hr.light-100 {
     margin-bottom: 1rem;
 }
 
+
 /*---Media Queries --*/
+
+/* Custom styles for screens larger than 1250px */
+
+@media (max-width: 1149px) {
+    .navbar-nav li {
+      padding-right: 0; /* Remove the padding */
+      text-align: center;
+    }
+
+    .navbar-nav {
+        display: flex; /* Turn navbar items into a flex container */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically (optional) */
+        width: 100%; /* Ensure the navbar takes up full width */
+      }
+  }
+
+  .navbar-collapse{
+    position: absolute; /* Make navbar collapse absolute positioned */
+    top: 0;  /* Align to top */
+    right: 0; /* Align to the right */
+    left: auto; /* Avoid it extending to the left */
+    z-index: 1050; /* Make sure it's above page content */
+    display: flex; 
+    margin-top: 135px;
+    background-color: white;
+    width: 16%;
+    
+  }
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Bootstrap primary color for hover effect */
+}
+
+
+@media (min-width: 1150px) {
+    
+
+.navbar {
+    display: flex; /* Use flexbox for the navbar */
+    justify-content: center; /* Center everything horizontally */
+    align-items: center; /* Center everything vertically */
+    padding-left: 0;
+    padding-right: 0; /* Remove any padding */
+    
+}
+
+.navbar-nav li{
+    padding-right: 20px;
+    width: 100%;
+    gap:40px;
+  
+
+}
+
+/* Navbar brand (logo and name) */
+.navbar-brand {
+    display: flex;
+    align-items: center; /* Vertically center logo and text */
+    justify-content: center; /* Horizontally center the logo and text */
+}
+
+/* Navbar items */
+.navbar-collapse {
+    display: flex !important; /* Use flexbox for collapsing items */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+    width: 100%; /* Allow the navbar to take up the full width */
+   
+}
+
+/* Navbar menu items in a row */
+.navbar-nav {
+    display: flex; /* Ensure items are laid out horizontally */
+    flex-direction: row; /* Layout in a horizontal row */
+    justify-content: center; /* Center items horizontally */
+    padding-left: 0; /* Remove default padding */
+    margin-bottom: 0px; /* Remove any margin */
+    align-items: flex-start;
+    margin-top: -100px;
+   
+
+   
+}
+
+.navbar-nav li {
+    width:100%;
+    text-align: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+    margin-bottom: 30px;
+}
+
+
+.navbar-toggler {
+    display:none;
+}
+
+
+}
+
+
+  
 @media (max-width: 992px) {
 .social a{
     font-size: 4em;
     padding: 2rem;
 }
+
+.container {
+    padding: 10px;
 }
+
+
+
+
+}
+
 @media (max-width: 768px) {
     
     .display-4{
@@ -270,5 +408,4 @@ will-change: transform;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-
 }
