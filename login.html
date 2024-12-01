@@ -68,7 +68,7 @@
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        fetch("http://csc131voting.ddns.net:3000/login", {
+        fetch("https://csc131voting.ddns.net:3000/login", {
             method: "POST",
             body: JSON.stringify({ username, password }),
             headers: { "Content-type": "application/json; charset=UTF-8" }
