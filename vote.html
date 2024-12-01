@@ -9,7 +9,7 @@
         let isAdmin = false; // Variable to store whether the user is an admin
 
         function fetchPolls() {
-            fetch('http://csc131voting.ddns.net:3000/polls', {
+            fetch('https://csc131voting.ddns.net:3000/polls', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -21,7 +21,7 @@
                 container.innerHTML = '';
 
                 // Fetch user role to check if they are an admin
-                fetch('http://csc131voting.ddns.net:3000/user', {
+                fetch('https://csc131voting.ddns.net:3000/user', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -81,7 +81,7 @@
 
             const optionId = selectedOption.value;
 
-            fetch('http://csc131voting.ddns.net:3000/polls/vote', {
+            fetch('https://csc131voting.ddns.net:3000/polls/vote', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -98,7 +98,7 @@
         }
 
         function displayPollResultsChart(pollId) {
-            fetch(`http://csc131voting.ddns.net:3000/polls/results/${pollId}`, {
+            fetch(`https://csc131voting.ddns.net:3000/polls/results/${pollId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
