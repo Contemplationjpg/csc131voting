@@ -70,7 +70,7 @@ app.post("/login", (req, res) => {
 app.get('/polls', authenticate, (req, res) => {
     const query = `
         SELECT p.poll_id, p.title, p.description, p.deadline, po.option_id, po.option_text, po.votes
-        FROM Polls p
+        FROM polls p
         LEFT JOIN polloptions po ON p.poll_id = po.poll_id
         ORDER BY p.created_at DESC;
     `;
