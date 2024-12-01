@@ -36,3 +36,8 @@ run `node index.js`
 
 ## Client
 Open `index.html` in a web browser  (or get the live extension on visual studio, will be needed if you're trying to mess around with logging in with the database)
+
+
+##New Changes
+npm install chart.js (for chart output)
+will need to use a new dump as well.
