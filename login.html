@@ -77,6 +77,8 @@
         .then(json => {
             if (json.token) {
                 localStorage.setItem("jwtToken", json.token); // Save the JWT token
+                localStorage.setItem("username", username);
+                localStorage.setItem("is_admin", json.is_admin);
                 alert("Login successful!");
                 window.location.href = "index.html"; // Redirect to home page
             } else {
