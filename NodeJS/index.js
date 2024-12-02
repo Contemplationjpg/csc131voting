@@ -7,6 +7,7 @@ const db = require('./db');
 const adminMiddleware = require('./adminMiddleware.js');
 const authenticate = require('./authMiddleware.js');
 const cors = require('cors'); 
+const Mailjet = require('node-mailjet');
 require('dotenv').config();
 
 const app = express();
@@ -16,6 +17,11 @@ const httpsServer = https.createServer({
         key: fs.readFileSync(__dirname + '/privkey.pem'),
         cert: fs.readFileSync(__dirname + '/cert.pem')
 }, app);
+
+const mailjet = Mailjet.apiConnect(
+    process.env.MAILJET_KEY,
+    process.env.MAILJET_SECRET
+);
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -260,6 +266,34 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
     );
 });
 
+app.post('/contact', (req, res) =>{ 
+    const request = mailjet
+        .post('send', { version: 'v3.1' })
+        .request({
+          Messages: [
+            {
+              From: {
+                Email: req.email,
+                Name: req.name
+              },
+              To: [
+                {
+                  Email: "m66484314@gmail.com",
+                  Name: "Echo"
+                }
+              ],
+              Subject: "Contact Us Message",
+              TextPart: "Phone Number: " + req.number + "\n" + req.message
+            }
+          ]
+        })
+    .then((result) => {
+        console.log(result.body)
+    })
+    .catch((err) => {
+        console.log(err.statusCode)
+    })
+}); 
 
 // Protected route
 app.get('/protected', authenticate, (req, res) => {
