@@ -18,7 +18,7 @@
 <nav class="navbar navbar-expand-custom navbar-light bg-light sticky-top">
    <div class="container-fluid">
      <!-- Navbar Brand -->
-     <a class="navbar-brand" href="#">
+     <a class="navbar-brand" href="index.html">
        <img src="img/vote.png" class="brand-image" alt="Logo">
        <span class="brand-text">Echo Voting Services</span>
      </a>
@@ -77,6 +77,8 @@
         .then(json => {
             if (json.token) {
                 localStorage.setItem("jwtToken", json.token); // Save the JWT token
+                localStorage.setItem("username", username);
+                localStorage.setItem("is_admin", json.is_admin);
                 alert("Login successful!");
                 window.location.href = "index.html"; // Redirect to home page
             } else {

@@ -69,7 +69,7 @@ app.post("/login", (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.json({ message: 'Login successful', token });
+        res.json({ message: 'Login successful', token , is_admin: user.is_admin});
     });
 });
 
