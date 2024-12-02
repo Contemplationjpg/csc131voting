@@ -87,8 +87,10 @@
         .then(json => {
             if (json) {
                console.log(json);
+               alert("Message Sent!")
             } else {
                console.log("Error: Failed to send message");
+               alert("ERROR: Failed to send message")
             }
         })
         .catch(error => console.error("Error:", error));
