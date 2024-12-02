@@ -29,6 +29,7 @@ app.use(cors({
         if (origin === 'http://localhost' || origin === 'http://127.0.0.1:5500' || !origin || origin==='null' || origin==='https://csc131voting.vercel.app') {
             callback(null, true);
         } else {
+            console.log(origin);
             callback(new Error('Not allowed by CORS'));
         }
     },
@@ -267,14 +268,15 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
 });
 
 app.post('/contact', (req, res) =>{ 
+    const {name, email, number, message} = req.body;
     const request = mailjet
         .post('send', { version: 'v3.1' })
         .request({
           Messages: [
             {
               From: {
-                Email: req.email,
-                Name: req.name
+                Email: "m66484314@gmail.com",
+                Name: name
               },
               To: [
                 {
@@ -283,15 +285,17 @@ app.post('/contact', (req, res) =>{
                 }
               ],
               Subject: "Contact Us Message",
-              TextPart: "Phone Number: " + req.number + "\n" + req.message
+              TextPart: "Phone Number: " + number + "\n" + "Email: " + email + "\n" + message
             }
           ]
         })
     .then((result) => {
-        console.log(result.body)
+        res.json(result);
+        console.log(result);
     })
     .catch((err) => {
-        console.log(err.statusCode)
+        console.log(err.statusCode);
+        res.json(err);
     })
 }); 
 

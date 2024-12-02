@@ -51,7 +51,7 @@
 
 <div class="contactus-container padding mt-5">
    <h2 class="text-center mb-4">Contact Us</h2>
-   <form id="contactForm" action="send_email.php" method="POST">
+   <form id="contactForm">
        <div class="mb-3">
            <label for="name" class="form-label">Name</label>
            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
@@ -85,8 +85,8 @@
         })
         .then(response => response.json())
         .then(json => {
-            if (json.result) {
-               console.log(json.result);
+            if (json) {
+               console.log(json);
             } else {
                console.log("Error: Failed to send message");
             }
