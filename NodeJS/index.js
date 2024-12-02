@@ -268,7 +268,7 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
 });
 
 app.post('/contact', (req, res) =>{ 
-    const {name, email, number, message} = req.body;
+    const {name, email, phone, message} = req.body;
     const request = mailjet
         .post('send', { version: 'v3.1' })
         .request({
@@ -285,7 +285,7 @@ app.post('/contact', (req, res) =>{
                 }
               ],
               Subject: "Contact Us Message",
-              TextPart: "Phone Number: " + number + "\n" + "Email: " + email + "\n" + message
+              TextPart: "Phone Number: " + phone + "\n" + "Email: " + email + "\n" + message
             }
           ]
         })
