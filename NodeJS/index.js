@@ -7,6 +7,7 @@ const db = require('./db');
 const adminMiddleware = require('./adminMiddleware.js');
 const authenticate = require('./authMiddleware.js');
 const cors = require('cors'); 
+const Mailjet = require('node-mailjet');
 require('dotenv').config();
 
 const app = express();
@@ -17,12 +18,18 @@ const httpsServer = https.createServer({
         cert: fs.readFileSync(__dirname + '/cert.pem')
 }, app);
 
+const mailjet = Mailjet.apiConnect(
+    process.env.MAILJET_KEY,
+    process.env.MAILJET_SECRET
+);
+
 app.use(cors({
     origin: (origin, callback) => {
         // Allow requests from both 'http://localhost' and 'http://127.0.0.1:5500'
         if (origin === 'http://localhost' || origin === 'http://127.0.0.1:5500' || !origin || origin==='null' || origin==='https://csc131voting.vercel.app') {
             callback(null, true);
         } else {
+            console.log(origin);
             callback(new Error('Not allowed by CORS'));
         }
     },
@@ -260,6 +267,37 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
     );
 });
 
+app.post('/contact', (req, res) =>{ 
+    const {name, email, number, message} = req.body;
+    const request = mailjet
+        .post('send', { version: 'v3.1' })
+        .request({
+          Messages: [
+            {
+              From: {
+                Email: "m66484314@gmail.com",
+                Name: name
+              },
+              To: [
+                {
+                  Email: "m66484314@gmail.com",
+                  Name: "Echo"
+                }
+              ],
+              Subject: "Contact Us Message",
+              TextPart: "Phone Number: " + number + "\n" + "Email: " + email + "\n" + message
+            }
+          ]
+        })
+    .then((result) => {
+        res.json(result);
+        console.log(result);
+    })
+    .catch((err) => {
+        console.log(err.statusCode);
+        res.json(err);
+    })
+}); 
 
 // Protected route
 app.get('/protected', authenticate, (req, res) => {
