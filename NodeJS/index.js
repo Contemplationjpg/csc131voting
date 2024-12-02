@@ -226,7 +226,7 @@ app.get('/admin', authenticate, adminMiddleware, (req, res) => {
 
 // Route to create a new poll
 app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
-    const { title, description, poll_type, deadline } = req.body;
+    const { title, description, poll_type, deadline, options } = req.body;
 
     if (!title || !deadline || !poll_type) {
         return res.status(400).json({ error: 'Poll must have a title, type, and deadline' });
@@ -241,9 +241,10 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
 
             const pollId = result.insertId;
 
-            // Automatically insert "Yes" and "No" options for Yes/No polls
-            if (poll_type === 'yes_no') {
-                const options = ['Yes', 'No'];
+                // Automatically insert "Yes" and "No" options for Yes/No polls
+                if(poll_type == "yes_no"){
+                    const options = ['YES', 'NO'];1
+                }
                 const optionQueries = options.map(option => {
                     return new Promise((resolve, reject) => {
                         db.query(
@@ -256,19 +257,15 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
                         );
                     });
                 });
-
                 Promise.all(optionQueries)
-                    .then(() => res.status(201).json({ message: 'Yes/No Poll created successfully', pollId }))
+                    .then(() => res.status(201).json({ message: 'Poll created successfully', pollId }))
                     .catch(err => res.status(500).json({ error: 'Database error while adding options' }));
-            } else {
-                res.status(201).json({ message: 'Regular Poll created successfully', pollId });
-            }
         }
     );
 });
 
 app.post('/contact', (req, res) =>{ 
-    const {name, email, number, message} = req.body;
+    const {name, email, phone, message} = req.body;
     const request = mailjet
         .post('send', { version: 'v3.1' })
         .request({
@@ -285,7 +282,7 @@ app.post('/contact', (req, res) =>{
                 }
               ],
               Subject: "Contact Us Message",
-              TextPart: "Phone Number: " + number + "\n" + "Email: " + email + "\n" + message
+              TextPart: "Phone Number: " + phone + "\n" + "Email: " + email + "\n" + message
             }
           ]
         })
