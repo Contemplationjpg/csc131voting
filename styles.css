@@ -382,7 +382,13 @@ hr.light-100 {
 
     }
     
-    
+    #contacts {
+        padding-right: 100px !important;
+        padding-left: 100px !important;
+       
+      }
+
+
 }
 
 
@@ -449,6 +455,12 @@ hr.light-100 {
         transform: scale(0.8);
     }
 
+    #contacts {
+        padding-right: 80px !important;
+        padding-left: 80px !important;
+       
+      }
+
 }
 
 
@@ -457,6 +469,12 @@ hr.light-100 {
     .col-lg-6 img {
         width: 100%;
        height: 60% !important;
+       
+      }
+
+      #contacts {
+        padding-right: 40px !important;
+        padding-left: 40px !important;
        
       }
 
@@ -491,6 +509,11 @@ hr.light-100 {
         width: 100% !important;
         ;
        }
+
+       #learnmore3{
+        width: 100% !important;
+        ;
+       }
     
 
     .col-lg-6 .second-img {
@@ -502,15 +525,30 @@ hr.light-100 {
    
       }
 
+      .col-lg-6 .third-img {
+        
+        transform: scale(1.1) !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        padding-left: 0px !important;
+   
+      }
+
       .footer-img {
         transform: scale(0.7);
     }
+
+    #contacts {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        width: 100%;
+       
+      }
 
 
 }
 
 
-  
 @media (max-width: 992px) {
 .social a{
     font-size: 3.5em;
@@ -562,7 +600,16 @@ hr.light-100 {
     transform: scale(1) !important;  
   }
 
-  
+  .col-lg-6 .third-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important; 
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0 !important; /* Override conflicting styles */
+    transform: scale(0.8) !important;  
+  }
+
   .footer-img {
     transform: scale(0.6);
 }
@@ -573,7 +620,40 @@ hr.light-100 {
     padding-left: 20px;
 }
 
+
+
+#contacts {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+
+ 
+  }
+
+.card{
+    margin-left: -25px !important;
+    width: 350px;
+
+  
 }
+
+#contacts .row{
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: space-evenly; /* Distribute cards evenly */
+    gap:60px !important; 
+}
+   
+.btn{
+    font-size: 80% !important;
+}
+.big-text {
+    font-size: 120%;  /* Adjust the size to your preference */
+
+}
+
+}
+
+
 
 @media (max-width: 768px) {
     
@@ -623,6 +703,17 @@ hr.light-100 {
         font-size: 80%;
       }
 
+     
+
+      .card{
+        margin-left: 150px !important;
+       
+        width: 60%;  
+}
+
+
+
+
 }
 @media (max-width: 576px) {
    
@@ -662,6 +753,14 @@ hr.light-100 {
     .navbar-collapse{
         padding-right: 50px;
         padding-left: 50px;
+    }
+
+
+    .card{
+        margin-left: 60px !important;
+       
+        width: 80%;
+
     }
 
 }
@@ -706,12 +805,43 @@ hr.light-100 {
   }
 
   #contacts {
-   padding-right: 100px;
-   padding-left: 100px;
-   padding-top: 20px;
-   padding-bottom: 100px;
+   
+   padding-right: 200px;
+   padding-left: 200px;
+   padding-top: 50px ;
+   padding-bottom: 50px;
+    
+  
+   
 
 }
+
+.card {
+    margin-left: 20px; /* Space between cards */
+    margin-right: 20px; /* Space between cards */
+    margin-top: 0; /* No top margin */
+    margin-bottom: 50px; /* No bottom margin */
+    max-height: 950px;
+    
+}
+
+.card-img-top {
+    display: block;  
+    width: 100%;
+    height: 50vh  ;
+    object-fit: cover;
+     
+   
+  
+}
+
+.card-body {
+    padding-bottom: 300px; /* Adds space at the bottom of the text */
+    display: flex;
+    flex-direction: column;
+    
+}
+
 
 .navbar-nav .nav-item.dropdown .dropdown-menu {
     position: absolute;  /* Allow dropdown to appear outside the flow */
@@ -768,4 +898,10 @@ p {
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+
+.container {
+    padding-top: 200px;
+    padding-bottom: 200px;
 }
