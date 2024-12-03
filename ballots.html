@@ -221,8 +221,10 @@
       accountDropdown.innerHTML = localStorage.getItem("username");
       const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
 
+
       accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove sign up button
       accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove log in button
+
 
       let newButton = document.createElement('a');
       newButton.className = "dropdown-item";
@@ -243,7 +245,10 @@
     <div id="pollsContainer" class="d-flex flex-column align-items-center" ></div>
     <canvas id="pollResultsChart" width="400" height="200" style="display:none;"></canvas>
 
-
+  <div class="container text-center">
+    <h1 class="big-text">You need to be logged in to view  ballots.</h1>
+    <p><a href="login.html" class="btn btn-primary">Go to Login Page</a></p>
+  </div>
 
  <hr class="my-4">
 

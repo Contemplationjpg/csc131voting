@@ -509,11 +509,25 @@ hr.light-100 {
         width: 100% !important;
         ;
        }
+
+       #learnmore3{
+        width: 100% !important;
+        ;
+       }
     
 
     .col-lg-6 .second-img {
         
         transform: scale(1.4) !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        padding-left: 0px !important;
+   
+      }
+
+      .col-lg-6 .third-img {
+        
+        transform: scale(1.1) !important;
         padding-top: 40px !important;
         padding-bottom: 40px !important;
         padding-left: 0px !important;
@@ -586,7 +600,16 @@ hr.light-100 {
     transform: scale(1) !important;  
   }
 
-  
+  .col-lg-6 .third-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important; 
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0 !important; /* Override conflicting styles */
+    transform: scale(0.8) !important;  
+  }
+
   .footer-img {
     transform: scale(0.6);
 }
@@ -618,11 +641,25 @@ hr.light-100 {
     flex-wrap: wrap; /* Allow cards to wrap to the next line */
     justify-content: space-evenly; /* Distribute cards evenly */
     gap:60px !important; 
+
 }
+   
+.btn{
+    font-size: 80% !important;
+}
+.big-text {
+    font-size: 120%;  /* Adjust the size to your preference */
+
+}
+
+
+
    
 
    
 }
+
+
 
 
 
@@ -681,11 +718,17 @@ hr.light-100 {
       .card{
         margin-left: 150px !important;
        
-        width: 60%;
 
-
-  
+        width: 60%;  
 }
+
+
+
+
+
+ 
+}
+
 
 
 }
@@ -794,11 +837,35 @@ hr.light-100 {
     margin-left: 20px; /* Space between cards */
     margin-right: 20px; /* Space between cards */
     margin-top: 0; /* No top margin */
-    margin-bottom: 0; /* No bottom margin */
-    height: 80%;
+
+    margin-bottom: 50px; /* No bottom margin */
+    max-height: 950px;
+    
+}
+
+.card-img-top {
+    display: block;  
+    width: 100%;
+    height: 50vh  ;
+    object-fit: cover;
+     
+   
+  
+}
+
+.card-body {
+    padding-bottom: 300px; /* Adds space at the bottom of the text */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+=======
+    
     
 }
  
+
 
 .navbar-nav .nav-item.dropdown .dropdown-menu {
     position: absolute;  /* Allow dropdown to appear outside the flow */
@@ -855,4 +922,10 @@ p {
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+
+.container {
+    padding-top: 200px;
+    padding-bottom: 200px;
 }
