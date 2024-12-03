@@ -100,7 +100,7 @@
        </div>
        <div class="mb-3">
            <label for="phone" class="form-label">Phone Number</label>
-           <input type="tel" maxlength="50" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+           <input type="text" maxlength="50" oninput="validatePhoneNumber(this)" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
        </div>
        <div class="mb-3">
            <label for="message" class="form-label">Message</label>
@@ -111,6 +111,7 @@
 </div>
 
 <script>
+   function validatePhoneNumber(input) { input.value = input.value.replace(/[^0-9\s()+-]/g, ''); }
    document.getElementById("sendButton").addEventListener("click", function() {
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
