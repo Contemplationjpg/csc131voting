@@ -45,7 +45,7 @@
                         const timeLeft = deadline - now;
                         const isClosed = timeLeft <= 0;
                         pollDiv.class = "list-group;"
-                        pollDiv.style = "border-width: 2px; border-style: solid; border-color: #000; width: 300px; margin-bottom: 10px; border-radius: 10px;"
+                        pollDiv.style = "border-width: 2px; border-style: solid; border-color: #000; width: 500px; margin-bottom: 10px; border-radius: 10px;"
                         pollDiv.innerHTML = `
                                 <div class="d-flex w-100 justify-content-between" style="padding: 5px;">
                                 <h5 class="mb-1">${poll.title}</h5>
@@ -55,12 +55,12 @@
                                 <small>Deadline: ${deadline.toLocaleString()}</small>
                                 
                                 <!--Separator-->
-                                <hr style="width: 300px; border-top: 1px solid #000;"> 
+                                <hr style="width: 500px; border-top: 1px solid #000;"> 
                         `;
                         poll.options.forEach(option => {
                                 if(isClosed){
                                     pollDiv.innerHTML += `
-                                        <li class="list-group-item d-flex disabled justify-content-between align-items-center" aria-disabled="true" style="padding: 5px;">
+                                        <li class="list-group-item p-3 d-flex disabled justify-content-between align-items-center" aria-disabled="true" style="padding: 5px;">
                                             <label class="form-check-label">${option.option_text}</label>
 
                                             <span class="badge text-bg-primary rounded-pill">${option.votes} votes</span>
