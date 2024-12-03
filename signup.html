@@ -29,21 +29,27 @@
           <span class="navbar-toggler-icon"></span>
         </button>
     
-        <!-- Collapsible menu items -->
-        <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="ballots.html">Ballots</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="credits.html">Credits</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="login.html">Log in</a></li>
-          </ul>
-        </div>
+     <!-- Collapsible menu items -->
+     <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav ms-auto" id="navbarButtons">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="ballots.html">Ballots</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="credits.html">Credits</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Account </a>
+             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="navbarDropdownMenuButtons">
+                <a class="dropdown-item" href="signup.html">Sign Up</a>
+                <a class="dropdown-item" href="login.html">  Log In</a>
+    
+             </div>
+          </li>
+        </ul>
       </div>
-    </nav>
-   
-  
+    </div>
+  </nav>
+ 
 
 
 
@@ -68,6 +74,8 @@
             <label for="confirm-password" class="form-label">Confirm Password</label>
             <input type="password" class="form-control" id="confirm-password" placeholder="Confirm your password" required>
         </div>
+
+        
         <button type="button" class="btn btn-primary w-100" id="signupButton">Sign Up</button>
     </form>
     <p class="mt-3 text-center">Already have an account? <a href="login.html">Log in</a></p>
@@ -127,42 +135,42 @@
 </div>
 
 
-<!----Footer--->
+<!--Footer-->
 <footer>
-   <div class="containter-fluid padding">
-      <div class="row text-center">
-         <div class="col-md-4">
-            <img src="img/vote.png" class="footer-img img-fluid">
-      
-         </div>
-         <div class="col-md-4">
-            <hr class="light">
-            <h5>Our Hours</h5>
-            <hr class="light">
-            <p>Monday: 9am - 5pm</p>
-            <p>Tuesday: 9am-5pm</p>
-            <p>Wednesday: 9am-5pm</p>
-            <p>Thursday: 9am - 5pm</p>
-            <p>Friday: 9am-5pm</p>
-            <p>Saturday: Closed</p>
-            <p>Sunday: Closed</p>
-         </div>
-         <div class="col-md-4">
-            <hr class="light">
-            <h5>Service </h5>
-            <hr class="light">
-            <p>m66484314@gmail.com</p>
-            <p>6000 J Street,</p>
-            <p>Sacrament, CA, 95819</p>
-         </div>
-         <div class="col-12">
-            <hr class="light-100">
-            <h5>&copy;voteballot.com</h5>
-         </div>
-      </div>
-   </div>
-</footer>
-
-
-</body>
-</html>
+    <div class="containter-fluid padding">
+       <div class="row text-center">
+          <div class="col-md-4">
+             <img src="img/vote.png" class="footer-img img-fluid" alt="Logo">
+ 
+        
+          </div>
+          <div class="col-md-4">
+             <hr class="light">
+             <h5>Our Hours</h5>
+             <hr class="light">
+             <p>Monday: 9am - 5pm</p>
+             <p>Tuesday: 9am-5pm</p>
+             <p>Wednesday: 9am-5pm</p>
+             <p>Thursday: 9am - 5pm</p>
+             <p>Friday: 9am-5pm</p>
+             <p>Saturday: Closed</p>
+             <p>Sunday: Closed</p>
+          </div>
+          <div class="col-md-4">
+             <hr class="light">
+             <h5>Service</h5>
+             <hr class="light">
+             <p>m66484314@gmail.com</p>
+             <p>6000 J Street,</p>
+             <p>Sacrament, CA, 95819</p>
+          </div>
+          <div class="col-12">
+             <hr class="light-100">
+             <h5>&copy;echovotingservices.com</h5>
+          </div>
+       </div>
+    </div>
+ </footer>
+ 
+ 
+ </body>

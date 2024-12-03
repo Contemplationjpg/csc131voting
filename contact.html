@@ -29,20 +29,26 @@
        <span class="navbar-toggler-icon"></span>
      </button>
  
-     <!-- Collapsible menu items -->
-     <div class="collapse navbar-collapse " id="navbarNav">
-       <ul class="navbar-nav ms-auto">
-         <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-         <li class="nav-item"><a class="nav-link" href="ballots.html">Ballots</a></li>
-         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-         <li class="nav-item"><a class="nav-link" href="credits.html">Credits</a></li>
-         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-         <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
-         <li class="nav-item"><a class="nav-link" href="login.html">Log in</a></li>
-       </ul>
-     </div>
-   </div>
- </nav>
+  <!-- Collapsible menu items -->
+  <div class="collapse navbar-collapse " id="navbarNav">
+   <ul class="navbar-nav ms-auto" id="navbarButtons">
+     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+     <li class="nav-item"><a class="nav-link" href="ballots.html">Ballots</a></li>
+     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+     <li class="nav-item"><a class="nav-link" href="credits.html">Credits</a></li>
+     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Account </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="navbarDropdownMenuButtons">
+           <a class="dropdown-item" href="signup.html">Sign Up</a>
+           <a class="dropdown-item" href="login.html">  Log In</a>
+
+        </div>
+     </li>
+   </ul>
+ </div>
+</div>
+</nav>
 
  
 
@@ -50,8 +56,12 @@
 <!---- Contact us---->
 
 <div class="contactus-container padding mt-5">
-   <h2 class="text-center mb-4">Contact Us</h2>
-   <form id="contactForm">
+   <div class="row welcome text-center">
+      <div class="col-12">
+         <h1 class="display-4">Contact Us</h1>
+      </div>
+   </div>
+   <form id="contactForm" action="send_email.php" method="POST">
        <div class="mb-3">
            <label for="name" class="form-label">Name</label>
            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
@@ -68,34 +78,10 @@
            <label for="message" class="form-label">Message</label>
            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message" required></textarea>
        </div>
-       <button type="button" class="btn btn-primary w-100" id="sendButton">Send Message</button>
+       <button type="submit" class="btn btn-primary w-100">Send Message</button>
    </form>
 </div>
 
-<script>
-   document.getElementById("sendButton").addEventListener("click", function() {
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      const message = document.getElementById("message").value;
-        fetch("https://csc131voting.ddns.net:3000/contact", {
-            method: "POST",
-            body: JSON.stringify({ name, email, phone, message }),
-            headers: { "Content-type": "application/json; charset=UTF-8" }
-        })
-        .then(response => response.json())
-        .then(json => {
-            if (json) {
-               console.log(json);
-               alert("Message Sent!")
-            } else {
-               console.log("Error: Failed to send message");
-               alert("ERROR: Failed to send message")
-            }
-        })
-        .catch(error => console.error("Error:", error));
-   });
-</script>
  <hr class="my-4">
 
 <!----Connect--->
@@ -116,14 +102,13 @@
 </div>
 
 
-<!----Footer--->
+<!--Footer-->
 <footer>
    <div class="containter-fluid padding">
       <div class="row text-center">
          <div class="col-md-4">
-            <img src="img/vote.png" class="footer-img img-fluid">
-          
-           
+            <img src="img/vote.png" class="footer-img img-fluid" alt="Logo">
+
        
          </div>
          <div class="col-md-4">
@@ -140,7 +125,7 @@
          </div>
          <div class="col-md-4">
             <hr class="light">
-            <h5>Service </h5>
+            <h5>Service</h5>
             <hr class="light">
             <p>m66484314@gmail.com</p>
             <p>6000 J Street,</p>
@@ -148,7 +133,7 @@
          </div>
          <div class="col-12">
             <hr class="light-100">
-            <h5>&copy;voteballot.com</h5>
+            <h5>&copy;echovotingservices.com</h5>
          </div>
       </div>
    </div>
