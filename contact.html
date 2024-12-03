@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,8 +52,36 @@
 </div>
 </nav>
 
- 
+ <script>
+   const accountDropdown = document.getElementById("navbarDropdownMenuLink");
 
+   //Add username to top right if logged in
+   if(localStorage.getItem("username")){
+      if(localStorage.getItem("is_admin") == 1){
+         const navBar = document.getElementById("navbarButtons");
+         navBar.innerHTML += `<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>`
+      }
+      accountDropdown.innerHTML = localStorage.getItem("username");
+      const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
+
+      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove sign up button
+      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove log in button
+
+      let newButton = document.createElement('a');
+      newButton.className = "dropdown-item";
+      newButton.href = '#';
+      newButton.textContent = "Sign Out";
+      newButton.id = "signOutButton"
+
+      accountDropdownButtons.appendChild(newButton);
+   }
+   document.getElementById("signOutButton").addEventListener("click", function() {
+      localStorage.removeItem("username");
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("is_admin");
+      location.reload();
+   });
+</script> 
 
 <!---- Contact us---->
 
@@ -61,27 +91,51 @@
          <h1 class="display-4">Contact Us</h1>
       </div>
    </div>
-   <form id="contactForm" action="send_email.php" method="POST">
+   <form id="contactForm">
        <div class="mb-3">
            <label for="name" class="form-label">Name</label>
-           <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+           <input type="text" maxlength="150" class="form-control" id="name" name="name" placeholder="Enter your name" required>
        </div>
        <div class="mb-3">
            <label for="email" class="form-label">Email address</label>
-           <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+           <input type="email" maxlength="150" class="form-control" id="email" name="email" placeholder="Enter your email" required>
        </div>
        <div class="mb-3">
            <label for="phone" class="form-label">Phone Number</label>
-           <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+           <input type="tel" maxlength="50" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
        </div>
        <div class="mb-3">
            <label for="message" class="form-label">Message</label>
            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message" required></textarea>
        </div>
-       <button type="submit" class="btn btn-primary w-100">Send Message</button>
+       <button type="button" class="btn btn-primary w-100" id="sendButton">Send Message</button>
    </form>
 </div>
 
+<script>
+   document.getElementById("sendButton").addEventListener("click", function() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const message = document.getElementById("message").value;
+        fetch("https://csc131voting.ddns.net:3000/contact", {
+            method: "POST",
+            body: JSON.stringify({ name, email, phone, message }),
+            headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+        .then(response => response.json())
+        .then(json => {
+            if (json) {
+               console.log(json);
+               alert("Message Sent!")
+            } else {
+               console.log("Error: Failed to send message");
+               alert("ERROR: Failed to send message")
+            }
+        })
+        .catch(error => console.error("Error:", error));
+   });
+</script>
  <hr class="my-4">
 
 <!----Connect--->
@@ -138,6 +192,7 @@
       </div>
    </div>
 </footer>
+
 
 
 </body>

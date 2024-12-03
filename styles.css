@@ -641,6 +641,7 @@ hr.light-100 {
     flex-wrap: wrap; /* Allow cards to wrap to the next line */
     justify-content: space-evenly; /* Distribute cards evenly */
     gap:60px !important; 
+
 }
    
 .btn{
@@ -651,7 +652,16 @@ hr.light-100 {
 
 }
 
+
+
+   
+
+   
 }
+
+
+
+
 
 
 
@@ -708,9 +718,16 @@ hr.light-100 {
       .card{
         margin-left: 150px !important;
        
+
         width: 60%;  
 }
 
+
+
+
+
+ 
+}
 
 
 
@@ -820,6 +837,7 @@ hr.light-100 {
     margin-left: 20px; /* Space between cards */
     margin-right: 20px; /* Space between cards */
     margin-top: 0; /* No top margin */
+
     margin-bottom: 50px; /* No bottom margin */
     max-height: 950px;
     
@@ -841,6 +859,12 @@ hr.light-100 {
     flex-direction: column;
     
 }
+
+=======
+    
+    
+}
+ 
 
 
 .navbar-nav .nav-item.dropdown .dropdown-menu {
