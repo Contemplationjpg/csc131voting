@@ -50,8 +50,36 @@
 </div>
 </nav>
 
- 
+ <script>
+   const accountDropdown = document.getElementById("navbarDropdownMenuLink");
 
+   //Add username to top right if logged in
+   if(localStorage.getItem("username")){
+      if(localStorage.getItem("is_admin") == 1){
+         const navBar = document.getElementById("navbarButtons");
+         navBar.innerHTML += `<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>`
+      }
+      accountDropdown.innerHTML = localStorage.getItem("username");
+      const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
+
+      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove sign up button
+      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove log in button
+
+      let newButton = document.createElement('a');
+      newButton.className = "dropdown-item";
+      newButton.href = '#';
+      newButton.textContent = "Sign Out";
+      newButton.id = "signOutButton"
+
+      accountDropdownButtons.appendChild(newButton);
+   }
+   document.getElementById("signOutButton").addEventListener("click", function() {
+      localStorage.removeItem("username");
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("is_admin");
+      location.reload();
+   });
+</script> 
 
 <!---- Contact us---->
 
