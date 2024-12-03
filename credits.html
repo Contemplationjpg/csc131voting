@@ -49,36 +49,9 @@
   </div>
 </nav>
 
- <script>
-   const accountDropdown = document.getElementById("navbarDropdownMenuLink");
 
-   //Add username to top right if logged in
-   if(localStorage.getItem("username")){
-      if(localStorage.getItem("is_admin") == 1){
-         const navBar = document.getElementById("navbarButtons");
-         navBar.innerHTML += `<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>`
-      }
-      accountDropdown.innerHTML = localStorage.getItem("username");
-      const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
+ 
 
-      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove sign up button
-      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove log in button
-
-      let newButton = document.createElement('a');
-      newButton.className = "dropdown-item";
-      newButton.href = '#';
-      newButton.textContent = "Sign Out";
-      newButton.id = "signOutButton"
-
-      accountDropdownButtons.appendChild(newButton);
-   }
-   document.getElementById("signOutButton").addEventListener("click", function() {
-      localStorage.removeItem("username");
-      localStorage.removeItem("jwtToken");
-      localStorage.removeItem("is_admin");
-      location.reload();
-   });
-</script> 
 
 <!--Meet The Team-->
 <div id="contacts" class="container-fluid padding">
@@ -127,7 +100,7 @@
                <p class="card-text"> 
                   
                   <Strong>Tasks: </Strong>  <br> UML Diagrams <br> Use-Case Diagram <br> Algorithm Analysis <br >  Testing <br >Debugging <br > Documentation <br > Presentation </p> 
-
+              
             </div>
          </div>
       </div>
@@ -151,7 +124,6 @@
                <p class="card-text"> 
                      
                   <Strong>Tasks: </Strong> <br > Front-end <br > Version Control <br > Aesthetics <br > Accessibility </p>
-
               
                
             </div>
@@ -177,7 +149,7 @@
 
  <hr class="my-4">
 
-<!----Connect--->
+<!--Connect-->
 
 <div class="container-fluid padding">
    <div class="row text-center padding ">
@@ -185,14 +157,15 @@
          <h2>Connect</h2>
       </div>
       <div class="col-12 social padding ">
-         <a href="#"><i class="fab fa-facebook"></i></a>
-         <a href="#"><i class="fab fa-twitter"></i></a>  
-         <a href="#"><i class="fab fa-google-plus-g"></i></a>
-         <a href="#"><i class="fab fa-instagram"></i></a>
-         <a href="#"><i class="fab fa-youtube"></i></a>
+         <a href="https://www.facebook.com/profile.php?id=61568501003316"><i class="fab fa-facebook"></i></a>
+         <a href="https://x.com/EchoVoting"><i class="fab fa-twitter"></i></a>  
+         <a href="https://www.linkedin.com/in/echo-voting-services-b11071337/"><i class="fab fa-linkedin"></i></a>
+         <a href="https://www.instagram.com/echovoting/"><i class="fab fa-instagram"></i></a>
+         <a href="https://www.youtube.com/@EchoVotingServices"><i class="fab fa-youtube"></i></a>
       </div>
    </div>
 </div>
+
 
 
 <!--Footer-->
@@ -226,10 +199,7 @@
          </div>
          <div class="col-12">
             <hr class="light-100">
-
             <h5>&copy;csc131voting.vercel.app</h5>
-
-          
          </div>
       </div>
    </div>
