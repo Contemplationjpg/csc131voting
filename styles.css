@@ -6,6 +6,7 @@ html,body{
     width: 100%;
     font-family: 'Poppins', sans-serif;
     color: #222;
+    overflow-x: hidden; /* Disable horizontal scrolling */
 }
 
 .navbar {
@@ -47,7 +48,7 @@ html,body{
     position: relative;          
     text-align: center; 
 }
-
+/*testing*/
 .home-inner img {
     width: 100%;
     height: 100%;
@@ -113,11 +114,7 @@ p {
   }
 
 
-.col-lg-6 img {
-    width: 100%; /* Make sure the image takes up the full width of the column */
-    height: 100%; /* Ensure the image fills the height of the column */
-    object-fit: cover; /* Ensure the image covers the entire space without distortion */
- }
+
 
 .fa-code{
     color: #e54d26;
@@ -207,6 +204,24 @@ hr.light-100 {
     margin-bottom: 1rem;
 }
 
+ 
+.navbar-collapse{
+    position: absolute; /* Make navbar collapse absolute positioned */
+    top: 0;  /* Align to top */
+    right: 5px; /* Align to the right */
+    left: auto; /* Avoid it extending to the left */
+    z-index: 1050; /* Make sure it's above page content */
+    display: flex; 
+    margin-top: 135px;
+    background-color: whitesmoke;
+    width: 16%;
+    border-radius: 15px; /* Rounded corners for the whole collapse area */
+    
+  }
+ 
+  .navbar-nav .nav-link:hover {
+    color: #007bff; /* Bootstrap primary color for hover effect */
+  }
 
 /*---Media Queries --*/
 
@@ -216,6 +231,7 @@ hr.light-100 {
     .navbar-nav li {
       padding-right: 0; /* Remove the padding */
       text-align: center;
+
     }
 
     .navbar-nav {
@@ -224,23 +240,12 @@ hr.light-100 {
         align-items: center; /* Center items vertically (optional) */
         width: 100%; /* Ensure the navbar takes up full width */
       }
+    
+
   }
 
-  .navbar-collapse{
-    position: absolute; /* Make navbar collapse absolute positioned */
-    top: 0;  /* Align to top */
-    right: 0; /* Align to the right */
-    left: auto; /* Avoid it extending to the left */
-    z-index: 1050; /* Make sure it's above page content */
-    display: flex; 
-    margin-top: 135px;
-    background-color: white;
-    width: 16%;
-    
-  }
-.navbar-nav .nav-link:hover {
-  color: #007bff; /* Bootstrap primary color for hover effect */
-}
+ 
+
 
 
 @media (min-width: 1150px) {
@@ -310,10 +315,197 @@ hr.light-100 {
 }
 
 
+@media (max-width: 1900px) {
+
+    .container-fluid.padding.mt-5 {
+    
+        padding-right: 90px !important; /* Add padding to reduce the space inside */
+        padding-left: 90px !important;
+    }
+
+
+    .col-lg-6 img {
+        width: 100%;
+        height: 80% !important;;
+        
+        
+      }
+    
+
+      h2 {
+        font-size: 1.8rem !important; /* Larger text size */
+        line-height: 2;  /* Adjust line height for readability */
+       
+    }
+    
+    p {
+        font-size: 1.1rem !important;
+        line-height: 2;
+
+    }
+    
+
+}
+
+
+@media (max-width: 1800px) {
+
+    .container-fluid.padding.mt-5 {
+    
+        padding-right: 60px !important; /* Add padding to reduce the space inside */
+        padding-left: 60px !important;
+    }
+
+
+    .container-fluid.padding{
+    
+        padding-right: 60px !important; /* Add padding to reduce the space inside */
+        padding-left: 60px !important;
+    }
+
+    .col-lg-6 img {
+        width: 100%;
+        height: 80% !important;;
+      
+        
+      }
+
+      h2 {
+        font-size: 1.6rem !important; /* Larger text size */
+        line-height: 2;  /* Adjust line height for readability */
+       
+    }
+    
+    p {
+        font-size: 1.0rem !important;
+        line-height: 2;
+
+    }
+    
+    
+}
+
+
+@media (max-width: 1600px) {
+
+    .home-inner img{
+        object-fit: cover;
+    }
+
+
+    
+      
+      /* On large screens, you can adjust the width of the columns */
+      .col-lg-6 {
+        padding: 20px;  /* Reduce padding around the columns */
+    
+      }
+      
+      .col-lg-6 img {
+        width: 100%;
+       height: 75% !important;
+       
+      
+        
+      }
+      
+      .container-fluid.padding.mt-5 {
+    
+        padding-right: 20px !important; /* Add padding to reduce the space inside */
+        padding-left: 20px  !important; 
+      }
+     
+    
+      .container-fluid.padding {
+    
+        padding-right: 20px !important; /* Add padding to reduce the space inside */
+        padding-left: 20px  !important; 
+      }
+     
+
+      .col-lg-6 .second-img{
+        width: 100%;
+        height: 70% !important;;
+        padding-left: 110px !important;
+        padding-top: 130px !important;
+        transform: scale(1);
+   
+      }
+
+    h2 {
+        font-size: 1.5rem !important; /* Larger text size */
+        line-height: 2;  /* Adjust line height for readability */
+       
+    }
+    
+    p {
+        font-size: 1rem !important;
+        line-height: 2;
+
+    }
+    
+    .footer-img {
+        transform: scale(0.8);
+    }
+
+}
+
+
+@media (max-width: 1450px) {
+  
+    .col-lg-6 img {
+        width: 100%;
+       height: 60% !important;
+       
+      }
+
+}
+
+@media (max-width: 1280px) {
+
+    .social a{
+        font-size: 4em;
+        padding: 2rem;
+    }
+
+    .col-lg-6 img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        display: block !important; /* Ensure block behavior */
+        margin: 0 270px !important; /* Override conflicting styles */
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 0px !important;
+        transform: scale(1.5);   /* Increase size by 1.5 times */
+    
+      }
+    
+      #learnmore{
+        width: 100% !important;
+        ;
+    }
+
+    .col-lg-6 .second-img{
+        
+        transform: scale(1.4);
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        padding-left: 0px !important;
+   
+      }
+
+      .footer-img {
+        transform: scale(0.7);
+    }
+
+
+}
+
   
 @media (max-width: 992px) {
 .social a{
-    font-size: 4em;
+    font-size: 3.5em;
     padding: 2rem;
 }
 
@@ -321,8 +513,57 @@ hr.light-100 {
     padding: 10px;
 }
 
+.home-inner{
+    font-size: 70%;
+}
+
+.home-inner img {
+    height: 100%;
+}
+
+.home-caption .btn {
+    font-size: 1.0rem;
+   
+}
+
+.btn-lg{
+    font-size: 1rem;
+}
 
 
+.navbar-toggler{
+    font-size:  16px;
+}
+.col-lg-6 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0 !important; /* Override conflicting styles */
+    transform: scale(1);  
+  }
+
+  .col-lg-6 .second-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0 !important; /* Override conflicting styles */
+    transform: scale(1);  
+  }
+
+  
+  .footer-img {
+    transform: scale(0.6);
+}
+
+
+.contactus-container{
+    padding-right: 20px;
+    padding-left: 20px;
+}
 
 }
 
@@ -333,9 +574,47 @@ hr.light-100 {
     }
 
     .social a{
-        font-size: 2.5em;
+        font-size: 2.2em;
         padding: 1.2rem;
     }
+
+    .home-inner{
+        font-size: 60%;
+    }
+    
+    
+    .home-caption .btn {
+        font-size: 0.85rem;
+       
+    }
+
+    .btn-lg{
+        font-size: 90%;
+    }
+
+    .brand-text{
+        font-size: 120%;
+    }
+
+    .brand-image{
+        width: 80px;
+    }
+
+    .col-lg-6 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .footer-img {
+        transform: scale(0.5);
+    }
+    
+    .navbar-nav li {
+    
+        font-size: 80%;
+      }
+
 }
 @media (max-width: 576px) {
    
@@ -349,39 +628,39 @@ hr.light-100 {
         padding: 0.7rem;
     }
     
+    .brand-text{
+        font-size: 75%;
+    }
+
+    .brand-image{
+        width: 40px;
+        margin-left: 10px ;
+    }
+
+    .navbar-toggler{
+        font-size:  10px;
+    }
+
+    .col-lg-6 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .footer-img {
+        transform: scale(0.4);
+    }
+
+    .navbar-collapse{
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+
 }
 
 
 
-/*--- Fixed Background Image --*/
-figure {
-position: relative;
-width: 100%;
-height: 60%;
-margin: 0!important;
-}
-.fixed-wrap {
-clip: rect(0, auto, auto, 0);
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-}
-#fixed {
-background-image: url('img/mac.png');
-position: fixed;
-display: block;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-size: cover;
-background-position: center center;
--webkit-transform: translateZ(0);
-        transform: translateZ(0);
-will-change: transform;
-}
+
 
 
 /*--- Login --*/
@@ -421,7 +700,64 @@ will-change: transform;
   #contacts {
    padding-right: 100px;
    padding-left: 100px;
-   padding-top: 100px;
+   padding-top: 20px;
    padding-bottom: 100px;
 
+}
+
+.navbar-nav .nav-item.dropdown .dropdown-menu {
+    position: absolute;  /* Allow dropdown to appear outside the flow */
+    z-index: 9999; /* Ensure it stays above the page content */
+    margin-left: -40px; /* Adjust the margin as needed to move it slightly to the left */
+}
+
+h2 {
+    font-size: 2rem; /* Larger text size */
+    line-height: 2;  /* Adjust line height for readability */
+    overflow: hidden;  /* Prevent overflow if text exceeds container */
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 2;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container-fluid.padding.mt-5 {
+    
+    padding-right: 140px; /* Add padding to reduce the space inside */
+    padding-left: 140px;
+}
+
+.container-fluid.padding{
+    
+    padding-right: 100px; /* Add padding to reduce the space inside */
+    padding-left: 100px;
+}
+
+#learnmore{
+    width: 50%;
+
+}
+.col-lg-6 img {
+    width: 100%;
+    height:70%;
+    object-fit: cover;
+    align-items: center;
+    padding-top: 70px;
+    padding-left: 70px;
+  }
+
+  .col-lg-6 .second-img {
+    width: 100%; 
+    height: auto !important;
+    object-fit: cover;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
