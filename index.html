@@ -57,6 +57,10 @@
 
    //Add username to top right if logged in
    if(localStorage.getItem("username")){
+      if(localStorage.is_admin){
+         const navBar = document.getElementById("navbarButtons");
+         navBar.innerHTML += `<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>`
+      }
       accountDropdown.innerHTML = localStorage.getItem("username");
       const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
 
