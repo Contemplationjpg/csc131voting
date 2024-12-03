@@ -23,7 +23,7 @@
        <span class="brand-text" >Echo Voting Services</span>
      </a>
  
-   <!-- Hamburger button aligned to the right -->
+     <!-- Hamburger button aligned to the right -->
      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -49,12 +49,39 @@
   </div>
 </nav>
 
+ <script>
+   const accountDropdown = document.getElementById("navbarDropdownMenuLink");
 
- 
+   //Add username to top right if logged in
+   if(localStorage.getItem("username")){
+      if(localStorage.getItem("is_admin") == 1){
+         const navBar = document.getElementById("navbarButtons");
+         navBar.innerHTML += `<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>`
+      }
+      accountDropdown.innerHTML = localStorage.getItem("username");
+      const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
 
+      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove sign up button
+      accountDropdownButtons.removeChild(accountDropdownButtons.children[0]); //Remove log in button
+
+      let newButton = document.createElement('a');
+      newButton.className = "dropdown-item";
+      newButton.href = '#';
+      newButton.textContent = "Sign Out";
+      newButton.id = "signOutButton"
+
+      accountDropdownButtons.appendChild(newButton);
+   }
+   document.getElementById("signOutButton").addEventListener("click", function() {
+      localStorage.removeItem("username");
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("is_admin");
+      location.reload();
+   });
+</script> 
 
 <!--Meet The Team-->
-<div id="contacts" class="container-fluid padding">
+<div id="contacts2" class="container-fluid padding">
     <div class="row welcome text-center">
        <div class="col-12">
           <h1 class="display-4">Credits</h1>
@@ -63,13 +90,13 @@
     </div>
  </div>
  
-
  <!--Cards-->
+
 <div id="contacts"  class="container-fluid padding">
    <div class="row padding">
       <div class="col-md-4">
          <div class="card">
-            <img class="card-img-top" src="img/teammember1.jpg">
+            <img class="card-img-top" src="img/teammember1.jpg" alt="Malakai">
             <div class="card-body">
                <h4 class="card-title">Malakai Saechao</h4>
                <p class="card-text"> 
@@ -82,7 +109,7 @@
       </div>
       <div class="col-md-4">
          <div class="card">
-            <img class="card-img-top" src="img/teammember2.jpg">
+            <img class="card-img-top" src="img/teammember2.jpg" alt="Mujtaba">
             <div class="card-body">
                <h4 class="card-title">Mujtaba Khan</h4>
                <p class="card-text">         
@@ -94,19 +121,19 @@
       </div>
       <div class="col-md-4">
          <div class="card">
-            <img class="card-img-top" src="img/teammember3.jpg">
+            <img class="card-img-top" src="img/teammember3.jpg" alt="Nitin">
             <div class="card-body">
                <h4 class="card-title">Nitin Kowdle</h4>
                <p class="card-text"> 
                   
                   <Strong>Tasks: </Strong>  <br> UML Diagrams <br> Use-Case Diagram <br> Algorithm Analysis <br >  Testing <br >Debugging <br > Documentation <br > Presentation </p> 
-              
+
             </div>
          </div>
       </div>
       <div class="col-md-4">
          <div class="card">
-            <img class="card-img-top" src="img/teammember4.png">
+            <img class="card-img-top" src="img/teammember4.png" alt="Moazin">
             <div class="card-body">
                <h4 class="card-title">Moazin Masood</h4>
                <p class="card-text"> 
@@ -118,20 +145,20 @@
       </div>
       <div class="col-md-4">
          <div class="card">
-            <img class="card-img-top" src="img/teammember5.jpg">
+            <img class="card-img-top" src="img/teammember5.jpg" alt="Caillou">
             <div class="card-body">
                <h4 class="card-title">Caillou Xiong</h4>
                <p class="card-text"> 
                      
                   <Strong>Tasks: </Strong> <br > Front-end <br > Version Control <br > Aesthetics <br > Accessibility </p>
-              
-               
+
+      
             </div>
          </div>
       </div>
       <div class="col-md-4">
          <div class="card">
-            <img class="card-imd-top" src="img/team1.png">
+            <img class="card-imd-top" src="img/teammember6.jpg" alt="Justin">
             <div class="card-body">
                <h4 class="card-title">Justin Koh</h4>
                <p class="card-text"> 
@@ -167,7 +194,6 @@
 </div>
 
 
-
 <!--Footer-->
 <footer>
    <div class="containter-fluid padding">
@@ -199,7 +225,10 @@
          </div>
          <div class="col-12">
             <hr class="light-100">
+
             <h5>&copy;csc131voting.vercel.app</h5>
+
+          
          </div>
       </div>
    </div>

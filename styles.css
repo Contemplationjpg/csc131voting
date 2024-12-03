@@ -807,23 +807,44 @@ hr.light-100 {
 
 }
 
+#contacts2 {
+   
+    padding-right: 200px;
+    padding-left: 200px;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+     
+ 
+ }
+ 
+
 .card {
     margin-left: 20px; 
     margin-right: 20px; 
     margin-top: 0; 
     margin-bottom: 50px; 
-    max-height: 950px;
+    max-height: 1200px;
+    flex-direction: column;
+    
     
 }
 
-.card-img-top {
+.contact .card-img-top {
     display: block;  
     width: 100%;
-    height: 50vh  ;
+    height: 50vh ;
     object-fit: cover;
     height: 800px; 
 
 
+}
+
+.contact2 .card-img-top {
+    display: block;  
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    height: 800px;
 }
 
 .card-body {
@@ -831,7 +852,7 @@ hr.light-100 {
     display: flex;
     flex-direction: column;
     margin-bottom: 0;     
-    height: 80%;
+    height: 80% ;
 }
 
 

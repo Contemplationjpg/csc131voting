@@ -25,7 +25,7 @@
        <span class="brand-text" >Echo Voting Services</span>
      </a>
  
-     <!-- Hamburger button  -->
+     <!-- Hamburger button aligned to the right -->
      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -57,6 +57,10 @@
 
    //Add username to top right if logged in
    if(localStorage.getItem("username")){
+      if(localStorage.getItem("is_admin") == 1){
+         const navBar = document.getElementById("navbarButtons");
+         navBar.innerHTML += `<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>`
+      }
       accountDropdown.innerHTML = localStorage.getItem("username");
       const accountDropdownButtons = document.getElementById("navbarDropdownMenuButtons");
 
@@ -179,13 +183,17 @@
             Modify Vote (Optional): If needed, modify your vote before the voting period ends. <br>
             View Results: After voting ends, view real-time results through a visual representation. </p>
 
+
             <br><br><br>
+
             For additional help or questions, contact us using our <a href="contact.html"> contact page.</a>
          
 
       </div>
       <div class="col-lg-6">
+
          <img src="img/castingvote5.jpg" class="img-fluid third-img" alt="HowToVote" >
+
       </div>
    </div>
    <hr class="my-4">
