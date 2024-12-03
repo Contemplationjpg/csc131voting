@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
+/* General Styles for Body and HTML */
 html,body{
     height: 100%;
     width: 100%;
     font-family: 'Poppins', sans-serif;
     color: #222;
-    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-x: hidden; 
 }
 
+/* Navbar Styles */
 .navbar {
     padding: 0.8rem;
 
@@ -39,7 +40,7 @@ html,body{
     padding-left: 40px;
 }
 
-
+/* Home Section Styles */
 .home-inner{
     display: flex;               
     justify-content: center;     
@@ -76,6 +77,8 @@ html,body{
     color:white;
 }
 
+/* Button Styles */
+
 .btn-primary {
     background-color: #6648b1;
     border: 1px solid #563d7c;
@@ -95,6 +98,7 @@ html,body{
     padding-bottom: 2rem;
 }
 
+/* Welcome Section */
 .welcome {
     width: 75%;
     margin: 0 auto;
@@ -108,6 +112,7 @@ html,body{
     margin-bottom: 1rem;
 }
 
+/* Paragraph Styles */
 p {
     line-height: 2; 
     font-size: 1rem; 
@@ -115,7 +120,7 @@ p {
 
 
 
-
+/* Icon Styles */
 .fa-code{
     color: #e54d26;
 }
@@ -130,15 +135,7 @@ p {
     margin: 1rem;
 }
 
-.fun {
-    width: 100%;
-    margin-bottom: 2rem;
-
-}
-
-.gif {
-    max-width: 100%;
-}
+/* Social Media Links Styling */
 
 .social a{
     font-size: 4.5em;
@@ -169,6 +166,8 @@ p {
 .fa-facebook:hover, .fa-twitter:hover, .fa-linked:hover, .fa-instagram:hover, .fa-youtube {
     color: #d5d5d5;
 }
+
+/* Footer Styles */
 
 footer {
     background-color: #3f3f3f;
@@ -204,60 +203,61 @@ hr.light-100 {
     margin-bottom: 1rem;
 }
 
- 
+/* Navbar Collapse Hamburger Styling */ 
+
 .navbar-collapse{
-    position: absolute; /* Make navbar collapse absolute positioned */
-    top: 0;  /* Align to top */
-    right: 5px; /* Align to the right */
-    left: auto; /* Avoid it extending to the left */
-    z-index: 1050; /* Make sure it's above page content */
+    position: absolute; 
+    top: 0;  
+    right: 5px; 
+    left: auto; 
+    z-index: 1050; 
     display: flex; 
     margin-top: 135px;
     background-color: whitesmoke;
     width: 16%;
-    border-radius: 15px; /* Rounded corners for the whole collapse area */
+    border-radius: 15px; 
     
   }
  
   .navbar-nav .nav-link:hover {
-    color: #007bff; /* Bootstrap primary color for hover effect */
+    color: #007bff; 
   }
 
 /*---Media Queries --*/
 
-/* Custom styles for screens larger than 1250px */
+/* Custom styles for screens */
+
+
 
 @media (max-width: 1149px) {
+
+    /* More navbar and layout customization for  screens */
     .navbar-nav li {
-      padding-right: 0; /* Remove the padding */
+      padding-right: 0; 
       text-align: center;
 
     }
 
     .navbar-nav {
-        display: flex; /* Turn navbar items into a flex container */
-        justify-content: center; /* Center items horizontally */
-        align-items: center; /* Center items vertically (optional) */
-        width: 100%; /* Ensure the navbar takes up full width */
+        display: flex; 
+        justify-content: center;
+        align-items: center; 
+        width: 100%; 
       }
     
 
   }
 
- 
-
-
 
 @media (min-width: 1150px) {
-    
-
+  
+ /* More navbar and layout customization for  screens */
 .navbar {
-    display: flex; /* Use flexbox for the navbar */
-    justify-content: center; /* Center everything horizontally */
-    align-items: center; /* Center everything vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     padding-left: 0;
-    padding-right: 0; /* Remove any padding */
-    
+    padding-right: 0; 
 }
 
 .navbar-nav li{
@@ -268,29 +268,26 @@ hr.light-100 {
 
 }
 
-/* Navbar brand (logo and name) */
 .navbar-brand {
     display: flex;
-    align-items: center; /* Vertically center logo and text */
-    justify-content: center; /* Horizontally center the logo and text */
+    align-items: center;
+    justify-content: center; 
 }
 
-/* Navbar items */
+
 .navbar-collapse {
-    display: flex !important; /* Use flexbox for collapsing items */
-    justify-content: center; /* Center the items horizontally */
-    align-items: center; /* Center the items vertically */
-    width: 100%; /* Allow the navbar to take up the full width */
-   
+    display: flex !important; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
 }
 
-/* Navbar menu items in a row */
 .navbar-nav {
-    display: flex; /* Ensure items are laid out horizontally */
-    flex-direction: row; /* Layout in a horizontal row */
-    justify-content: center; /* Center items horizontally */
-    padding-left: 0; /* Remove default padding */
-    margin-bottom: 0px; /* Remove any margin */
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+    padding-left: 0;
+    margin-bottom: 0px; 
     align-items: flex-start;
     margin-top: -100px;
     padding-right: 20px;
@@ -302,7 +299,7 @@ hr.light-100 {
 .navbar-nav li {
     width:100%;
     text-align: center;
-    white-space: nowrap; /* Prevent text from wrapping */
+    white-space: nowrap; 
     margin-bottom: 30px;
 }
 
@@ -331,6 +328,7 @@ hr.light-100 {
         
       }
     
+/* headings */
 
       h2 {
         font-size: 1.8rem !important; /* Larger text size */
@@ -338,6 +336,7 @@ hr.light-100 {
        
     }
     
+/* text */    
     p {
         font-size: 1.1rem !important;
         line-height: 2;
@@ -352,14 +351,14 @@ hr.light-100 {
 
     .container-fluid.padding.mt-5 {
     
-        padding-right: 60px !important; /* Add padding to reduce the space inside */
+        padding-right: 60px !important;  /* Add padding to reduce the space inside */
         padding-left: 60px !important;
     }
 
 
     .container-fluid.padding{
     
-        padding-right: 60px !important; /* Add padding to reduce the space inside */
+        padding-right: 60px !important;  /* Add padding to reduce the space inside */
         padding-left: 60px !important;
     }
 
@@ -371,8 +370,8 @@ hr.light-100 {
       }
 
       h2 {
-        font-size: 1.6rem !important; /* Larger text size */
-        line-height: 2;  /* Adjust line height for readability */
+        font-size: 1.6rem !important;  
+        line-height: 2;   
        
     }
     
@@ -382,6 +381,8 @@ hr.light-100 {
 
     }
     
+/* Adjust padding in contacts section */
+
     #contacts {
         padding-right: 100px !important;
         padding-left: 100px !important;
@@ -393,6 +394,8 @@ hr.light-100 {
 
 
 @media (max-width: 1600px) {
+    
+/* Ensures home-inner images cover the area without distortion */
 
     .home-inner img{
         object-fit: cover;
@@ -400,11 +403,9 @@ hr.light-100 {
 
 
     
-      
-      /* On large screens, you can adjust the width of the columns */
+/* On large screens, you can adjust the width of the columns */
       .col-lg-6 {
-        padding: 20px;  /* Reduce padding around the columns */
-    
+        padding: 20px;  
       }
       
       .col-lg-6 img {
@@ -440,8 +441,8 @@ hr.light-100 {
       }
 
     h2 {
-        font-size: 1.5rem !important; /* Larger text size */
-        line-height: 2;  /* Adjust line height for readability */
+        font-size: 1.5rem !important; 
+        line-height: 2;  
        
     }
     
@@ -491,12 +492,12 @@ hr.light-100 {
         width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
-        display: block !important; /* Ensure block behavior */
-        margin: 0 270px !important; /* Override conflicting styles */
+        display: block !important; 
+        margin: 0 270px !important; 
         padding-top: 10px !important;
         padding-bottom: 10px !important;
         padding-left: 0px !important;
-        transform: scale(1.5);   /* Increase size by 1.5 times */
+        transform: scale(1.5);  
     
       }
     
@@ -586,8 +587,7 @@ hr.light-100 {
     object-fit: cover;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    margin: 0 !important; /* Override conflicting styles */
-    transform: scale(1);  
+    margin: 0 !important; 
   }
 
   .col-lg-6 .second-img {
@@ -596,7 +596,7 @@ hr.light-100 {
     object-fit: cover !important; 
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    margin: 0 !important; /* Override conflicting styles */
+    margin: 0 !important; 
     transform: scale(1) !important;  
   }
 
@@ -606,7 +606,7 @@ hr.light-100 {
     object-fit: cover !important; 
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    margin: 0 !important; /* Override conflicting styles */
+    margin: 0 !important; 
     transform: scale(0.8) !important;  
   }
 
@@ -637,9 +637,9 @@ hr.light-100 {
 }
 
 #contacts .row{
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow cards to wrap to the next line */
-    justify-content: space-evenly; /* Distribute cards evenly */
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-evenly; 
     gap:60px !important; 
 }
    
@@ -647,7 +647,7 @@ hr.light-100 {
     font-size: 80% !important;
 }
 .big-text {
-    font-size: 120%;  /* Adjust the size to your preference */
+    font-size: 120%; 
 
 }
 
@@ -797,13 +797,6 @@ hr.light-100 {
     margin: 0 auto;
 }
 
-.card-img-top {
-    width: 100%; /* Ensures it fits the card width */
-    height: 800px; /* Set desired height */
-    object-fit: cover; /* Ensures the image scales without distortion */
-  
-  }
-
   #contacts {
    
    padding-right: 200px;
@@ -811,49 +804,68 @@ hr.light-100 {
    padding-top: 50px ;
    padding-bottom: 50px;
     
-  
-   
 
 }
 
+#contacts2 {
+   
+    padding-right: 200px;
+    padding-left: 200px;
+    padding-top: 50px ;
+    padding-bottom: 50px;
+     
+ 
+ }
+ 
+
 .card {
-    margin-left: 20px; /* Space between cards */
-    margin-right: 20px; /* Space between cards */
-    margin-top: 0; /* No top margin */
-    margin-bottom: 50px; /* No bottom margin */
-    max-height: 950px;
+    margin-left: 20px; 
+    margin-right: 20px; 
+    margin-top: 0; 
+    margin-bottom: 50px; 
+    max-height: 1200px;
+    flex-direction: column;
+    
     
 }
 
-.card-img-top {
+.contact .card-img-top {
     display: block;  
     width: 100%;
-    height: 50vh  ;
+    height: 50vh ;
     object-fit: cover;
-     
-   
-  
+    height: 800px; 
+
+
+}
+
+.contact2 .card-img-top {
+    display: block;  
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    height: 800px;
 }
 
 .card-body {
-    padding-bottom: 300px; /* Adds space at the bottom of the text */
+    padding-bottom: 300px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 0; /* No bottom margin */
-    height: 80%;
+    margin-bottom: 0;     
+    height: 80% ;
 }
 
 
 .navbar-nav .nav-item.dropdown .dropdown-menu {
-    position: absolute;  /* Allow dropdown to appear outside the flow */
-    z-index: 9999; /* Ensure it stays above the page content */
-    margin-left: -40px; /* Adjust the margin as needed to move it slightly to the left */
+    position: absolute;  
+    z-index: 9999; 
+    margin-left: -40px; 
 }
 
 h2 {
-    font-size: 2rem; /* Larger text size */
-    line-height: 2;  /* Adjust line height for readability */
-    overflow: hidden;  /* Prevent overflow if text exceeds container */
+    font-size: 2rem;
+    line-height: 2;  
+    overflow: hidden;  
 }
 
 p {
@@ -869,13 +881,13 @@ p {
 
 .container-fluid.padding.mt-5 {
     
-    padding-right: 140px; /* Add padding to reduce the space inside */
+    padding-right: 140px;
     padding-left: 140px;
 }
 
 .container-fluid.padding{
     
-    padding-right: 100px; /* Add padding to reduce the space inside */
+    padding-right: 100px; 
     padding-left: 100px;
 }
 
