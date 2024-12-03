@@ -424,8 +424,9 @@ hr.light-100 {
      
 
       .col-lg-6 .second-img{
+        object-fit: cover;
         width: 100%;
-        height: 70% !important;;
+        height: 80% !important;;
         padding-left: 110px !important;
         padding-top: 130px !important;
         transform: scale(1);
@@ -486,9 +487,15 @@ hr.light-100 {
         ;
     }
 
-    .col-lg-6 .second-img{
+       #learnmore2{
+        width: 100% !important;
+        ;
+       }
+    
+
+    .col-lg-6 .second-img {
         
-        transform: scale(1.4);
+        transform: scale(1.4) !important;
         padding-top: 40px !important;
         padding-bottom: 40px !important;
         padding-left: 0px !important;
@@ -501,6 +508,7 @@ hr.light-100 {
 
 
 }
+
 
   
 @media (max-width: 992px) {
@@ -547,11 +555,11 @@ hr.light-100 {
   .col-lg-6 .second-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover !important; 
     padding-top: 0px !important;
     padding-bottom: 0px !important;
     margin: 0 !important; /* Override conflicting styles */
-    transform: scale(1);  
+    transform: scale(1) !important;  
   }
 
   
