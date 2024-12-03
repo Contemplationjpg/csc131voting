@@ -241,11 +241,15 @@ app.post('/admin/create_poll', authenticate, adminMiddleware, (req, res) => {
 
             const pollId = result.insertId;
 
+                let poll_options;
                 // Automatically insert "Yes" and "No" options for Yes/No polls
                 if(poll_type == "yes_no"){
-                    const options = ['YES', 'NO'];1
+                    poll_options = ['YES', 'NO'];
                 }
-                const optionQueries = options.map(option => {
+                else{
+                    poll_options = options;
+                }
+                const optionQueries = poll_options.map(option => {
                     return new Promise((resolve, reject) => {
                         db.query(
                             'INSERT INTO polloptions (poll_id, option_text) VALUES (?, ?)',
