@@ -209,6 +209,17 @@
     </div>
   </nav>
  
+
+
+    <div id="pollsContainer" class="d-flex flex-column align-items-center" ></div>
+    <canvas id="pollResultsChart" width="400" height="200" style="display:none;"></canvas>
+
+
+  <div id="logged_in_message" class="container text-center">
+    <h1 class="big-text">You need to be logged in to view  ballots.</h1>
+    <p><a href="login.html" class="btn btn-primary">Go to Login Page</a></p>
+  </div>
+
 <script>
    const accountDropdown = document.getElementById("navbarDropdownMenuLink");
 
@@ -233,6 +244,8 @@
       newButton.id = "signOutButton"
 
       accountDropdownButtons.appendChild(newButton);
+    let element = document.getElementById("logged_in_message");
+        element.remove();
    }
    document.getElementById("signOutButton").addEventListener("click", function() {
       localStorage.removeItem("username");
@@ -241,15 +254,6 @@
       location.reload();
    });
 </script> 
-
-    <div id="pollsContainer" class="d-flex flex-column align-items-center" ></div>
-    <canvas id="pollResultsChart" width="400" height="200" style="display:none;"></canvas>
-
-  <div class="container text-center">
-    <h1 class="big-text">You need to be logged in to view  ballots.</h1>
-    <p><a href="login.html" class="btn btn-primary">Go to Login Page</a></p>
-  </div>
-
  <hr class="my-4">
 
 <!--Connect-->
