@@ -66,9 +66,17 @@
 
             //Check if deadline is in the past
             const now = new Date();
-            let dateString = now.toISOString();
-            dateString.substring(0,16);
-            if(dateString > deadline){
+            const timezone = { timeZone: 'America/Los_Angeles', // Specify the time zone 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit', 
+                hour: '2-digit', 
+                minute: '2-digit'
+            }
+            let localeString = now.toLocaleString('en-us',timezone);
+            const [month, day, year, hour, minute] = localeString.match(/\d+/g); 
+            const formattedString = `${year}-${month}-${day}T${hour}:${minute}`
+            if(formattedString > deadline){
                 alert('Deadline cannot be in the past');
                 return;
             }
