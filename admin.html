@@ -54,12 +54,24 @@
             const pollType = document.getElementById('pollType').value;
 
             const options = Array.from(document.getElementsByClassName('option')).map(opt => opt.value);
-
             if (pollType === 'regular' && options.length < 2) {
                 alert('Regular polls must have at least two options');
                 return;
             }
 
+            if(pollType === 'regular' && options.some(item => item.length === 0)){
+                alert('All poll options must be populated');
+                return;
+            }
+
+            //Check if deadline is in the past
+            const now = new Date();
+            let dateString = now.toISOString();
+            dateString.substring(0,16);
+            if(dateString > deadline){
+                alert('Deadline cannot be in the past');
+                return;
+            }
             fetch('https://csc131voting.ddns.net:3000/admin/create_poll', {
                 method: 'POST',
                 headers: {

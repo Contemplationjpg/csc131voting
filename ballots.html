@@ -51,9 +51,10 @@
                                 <h5 class="mb-1">${poll.title}</h5>
                                 <small>${isClosed ? 'Ended' : `${formatTimeLeft(timeLeft)}`}</small>
                                 </div>
+                                <div class="d-flex w-100 justify-content-between" style="padding: 5px;">
                                 <p class="mb-1">${poll.description}</p>
                                 <small>Deadline: ${deadline.toLocaleString()}</small>
-                                
+                                </div>
                                 <!--Separator-->
                                 <hr style="width: 500px; border-top: 1px solid #000;"> 
                         `;
