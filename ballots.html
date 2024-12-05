@@ -79,7 +79,7 @@
                                 }
                             });
 
-                        if(!isClosed) pollDiv.innerHTML += `<button onclick="handleVote(${poll.poll_id})">Vote</button>`;
+                        if(!isClosed) pollDiv.innerHTML += `<button class="btn btn-primary" onclick="handleVote(${poll.poll_id})">Vote</button>`;
                         container.appendChild(pollDiv);
                     });
                 });
